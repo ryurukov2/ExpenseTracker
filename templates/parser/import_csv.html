@@ -1,0 +1,10 @@
+{% extends "base/base.html" %}
+{#{% load static%}#}
+{% block content %}
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-primary">Import CSV</button>
+    </form>
+    hey!
+{% endblock content %}
