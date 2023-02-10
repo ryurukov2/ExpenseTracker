@@ -20,6 +20,7 @@ services:
   #     - ./certbot/www/:/var/www/certbot/:rw
   #     - ./certbot/conf/:/etc/letsencrypt/:rw
   web:
+    image: radoslavy/expensetracker
     build: .
     command: gunicorn --bind 0.0.0.0:8000 ExpenseTracker.wsgi:application 
     ports:
