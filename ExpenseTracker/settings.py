@@ -21,8 +21,9 @@ DEBUG = bool(os.environ.get("DEBUG"))
 
 ALLOWED_HOSTS = os.environ.get("ALLOWED_HOSTS").split(" ")
 # ALLOWED_HOSTS = ["*"]
-# CSRF_TRUSTED_ORIGINS = [f'https://{x}' for x in ALLOWED_HOSTS]
-CSRF_TRUSTED_ORIGINS = os.environ.get("ALLOWED_HOSTS").split(" ")
+CSRF_TRUSTED_ORIGINS = [f'http://{x}' for x in ALLOWED_HOSTS]
+# CSRF_TRUSTED_ORIGINS = os.environ.get("ALLOWED_HOSTS").split(" ")
+# CSRF_TRUSTED_ORIGINS = ["127.0.0.1",    "http://127.0.0.1:81", ]
 # Application definition
 
 INSTALLED_APPS = [
