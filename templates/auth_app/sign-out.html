@@ -1,0 +1,12 @@
+{% block content %}
+    <head>
+        <title>Log Out</title>
+    </head>
+    <body>
+    <form method="POST">
+        {{ form }}
+        {% csrf_token %}
+        <button type="submit">Log Out</button>
+    </form>
+    </body>
+{% endblock %}

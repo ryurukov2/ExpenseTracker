@@ -1,0 +1,25 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+{#<a href="{% url 'index' %}">HOME</a>#}
+<link rel="stylesheet" href="{% static 'css/analytics.css' %}">
+{% if not user.is_authenticated %}
+    <a href="{% url 'index' %}" class='unauth'>HOME</a>
+    <a href="{% url 'login' %}" class='unauth'>LOGIN</a>
+    <a href="{% url 'sign up' %}" class='unauth'>REGISTER</a>
+{% else %}
+    <a href="{% url 'index' %}" class='authd'>HOME</a>
+    <a href="{% url 'analytics' %}" class='authd'>Analytics</a>
+    <a href="{% url 'upload card csv' %}" class='authd'>Upload Card CSV</a>
+    <a href="{% url 'upload app csv' %}" class='authd'>Upload App CSV</a>
+{#    <a href="{% url 'profile detail' pk=request.user.pk %}" class='authd'>PROFILE</a>#}
+    <a href="{% url 'sign out' %}" class='authd'>LOG OUT</a>
+
+{% endif %}
+<br><br><br>
+{% block content %}
+
+{% endblock %}
+
+
+</html>
