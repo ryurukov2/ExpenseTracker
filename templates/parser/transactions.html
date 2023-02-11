@@ -17,31 +17,33 @@
                 </tr>
             </thead>
             <tbody>
-                {% for transaction in transactions %}
-                    <tr {% if transactionF.native_amount < 0 %} style="color: lightcoral" {% else %} style="color: green" {% endif %}>
-                        <td>{{ transaction.timestamp }}</td>
-                        <td>{{ transaction.description }}</td>
-                        <td>{{ transaction.currency }}</td>
-                        <td>{{ transaction.amount }}</td>
-                        <td>
-                            {% if transaction.to_currency %}
-                                {{ transaction.to_currency }}
-                            {% else %}
-                                &nbsp;
-                            {% endif %}
-                        </td>
-                        <td>
-                            {% if transaction.to_amount %}
-                                {{ transaction.to_amount }}
-                            {% else %}
-                                &nbsp;
-                            {% endif %}
-                        </td>
-                        <td>{{ transaction.native_currency }}</td>
-                        <td>{{ transaction.native_amount }}</td>
-                        <td>{{ transaction.native_amount_usd }}</td>
-                    </tr>
-                {% endfor %}
+                {% if transactions is not None %}
+                    {% for transaction in transactions %}
+                        <tr {% if transaction.native_amount < 0 %} style="color: lightcoral" {% else %} style="color: green" {% endif %}>
+                            <td>{{ transaction.timestamp }}</td>
+                            <td>{{ transaction.description }}</td>
+                            <td>{{ transaction.currency }}</td>
+                            <td>{{ transaction.amount }}</td>
+                            <td>
+                                {% if transaction.to_currency %}
+                                    {{ transaction.to_currency }}
+                                {% else %}
+                                    &nbsp;
+                                {% endif %}
+                            </td>
+                            <td>
+                                {% if transaction.to_amount %}
+                                    {{ transaction.to_amount }}
+                                {% else %}
+                                    &nbsp;
+                                {% endif %}
+                            </td>
+                            <td>{{ transaction.native_currency }}</td>
+                            <td>{{ transaction.native_amount }}</td>
+                            <td>{{ transaction.native_amount_usd }}</td>
+                        </tr>
+                    {% endfor %}
+                {% endif %}
             </tbody>
         </table>
     </body>
