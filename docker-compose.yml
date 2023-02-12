@@ -1,17 +1,36 @@
 version: '3.4'
 
 services:
-  web:
-    build: .
-    command: python manage.py runserver 0.0.0.0:8000
+  nginx:
+    image: nginx
+    ports:
+      - 80:80
+      - 443:443
+    depends_on:
+      - web
     volumes:
-      - ./:/usr/src/app/
+      - ./staticfiles:/home/app/web/staticfiles
+      - ./nginx/conf.d:/etc/nginx/conf.d
+      - ./nginx/logs:/var/log/nginx
+      # - ./certbot/www:/var/www/certbot/:ro
+      # - ./certbot/conf/:/etc/nginx/ssl/:ro
+  # certbot:
+  #   image: certbot/certbot:latest
+  #   volumes:
+  #     - ./certbot/www/:/var/www/certbot/:rw
+  #     - ./certbot/conf/:/etc/letsencrypt/:rw
+  web:
+    image: radoslavy/expensetracker
+    build: .
+    command: python manage.py runserver 0.0.0.0:8000 
     ports:
       - 8000:8000
     env_file:
       - .env
     depends_on:
       - postgres
+    volumes:
+      - ./staticfiles:/tmp/ExpenseTracker/staticfiles
   postgres:    
     image: postgres
     restart: always
