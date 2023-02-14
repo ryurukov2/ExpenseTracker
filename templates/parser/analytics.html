@@ -15,13 +15,13 @@
                     </tr>
                 </thead>
                 <tbody>
-                    Total spent during the whole period: {{ total_spent }}
+                    Total spent during the whole period: {{ total_spent|floatformat:2 }}
                 </br>
-                Total top-ups: {{ total_topup }}
+                Total top-ups: {{ total_topup|floatformat:2 }}
                 {% for transaction in total_spent_by_month %}
                     <tr>
                         <td>{{ transaction.month|date:"F Y" }}</td>
-                        <td>{{ transaction.total_spent }}</td>
+                        <td>{{ transaction.total_spent|floatformat:2 }}</td>
                     </tr>
                 {% endfor %}
             </tbody>
@@ -37,7 +37,7 @@
                 {% for transaction in top_merchants %}
                     <tr>
                         <td>{{ transaction.description }}</td>
-                        <td>{{ transaction.total_spent }}</td>
+                        <td>{{ transaction.total_spent|floatformat:2 }}</td>
                     </tr>
                 {% endfor %}
             </tbody>
@@ -52,27 +52,27 @@
             <tbody>
                 <tr>
                     <td>Cashback (in USD, at the time of transactions)</td>
-                    <td>${{ total_cashback_usd }}</td>
+                    <td>${{ total_cashback_usd|floatformat:2 }}</td>
                 </tr>
                 <tr>
                     <td>Cashback (in CRO)</td>
-                    <td>{{ total_cashback_cro }}</td>
+                    <td>{{ total_cashback_cro|floatformat:5 }}</td>
                 </tr>
                 <tr>
                     <td>Rebates (in USD, at the time of transactions)</td>
-                    <td>${{ total_rebates_usd }}</td>
+                    <td>${{ total_rebates_usd|floatformat:2 }}</td>
                 </tr>
                 <tr>
                     <td>Rebates (in CRO)</td>
-                    <td>{{ total_rebates_cro }}</td>
+                    <td>{{ total_rebates_cro|floatformat:5 }}</td>
                 </tr>
                 <tr>
                     <td>Stake rewards (in USD, at the time of transactions)</td>
-                    <td>${{ total_stake_usd }}</td>
+                    <td>${{ total_stake_usd|floatformat:2 }}</td>
                 </tr>
                 <tr>
                     <td>Stake rewards (in CRO)</td>
-                    <td>{{ total_stake_cro }}</td>
+                    <td>{{ total_stake_cro|floatformat:5 }}</td>
                 </tr>
             </tbody>
             <tfoot>
@@ -81,7 +81,7 @@
                         <b>Total CRO earned</b>
                     </td>
                     <td>
-                        <b>{{ total_overall_cro }} </b>
+                        <b>{{ total_overall_cro|floatformat:5 }} </b>
                     </td>
                 </tr>
                 <tr>
@@ -89,7 +89,7 @@
                         <b>Total USD earned (at the time of transactions)</b>
                     </td>
                     <td>
-                        <b>${{ total_overall_usd }}</b>
+                        <b>${{ total_overall_usd|floatformat:2 }}</b>
                     </td>
                 </tr>
             </tfoot>

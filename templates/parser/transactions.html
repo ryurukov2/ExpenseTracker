@@ -23,7 +23,7 @@
                             <td>{{ transaction.timestamp }}</td>
                             <td>{{ transaction.description }}</td>
                             <td>{{ transaction.currency }}</td>
-                            <td>{{ transaction.amount }}</td>
+                            <td>{{ transaction.amount|floatformat:2 }}</td>
                             <td>
                                 {% if transaction.to_currency %}
                                     {{ transaction.to_currency }}
@@ -39,7 +39,7 @@
                                 {% endif %}
                             </td>
                             <td>{{ transaction.native_currency }}</td>
-                            <td>{{ transaction.native_amount }}</td>
+                            <td>{{ transaction.native_amount|floatformat:2 }}</td>
                             <td>{{ transaction.native_amount_usd }}</td>
                         </tr>
                     {% endfor %}
